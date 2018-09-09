@@ -1,20 +1,28 @@
 package ui;
+import java.util.Scanner;
 
 public class Main
 {
     public static void main(String[] args)
     {
-        printSample();
-        printSentence("I like cats.");
+        int userInput = getInput();
+        eatFood(userInput);
     }
 
-    public static void printSample()
+    public static int getInput()
     {
-        System.out.println("Hello, World");
+        Scanner reader = new Scanner(System.in);
+        System.out.println("Please choose 1 for Ramen and 2 for Burger.");
+        int n = reader.nextInt();
+        reader.close();
+        return n;
     }
 
-    public static void printSentence(String str)
+    public static void eatFood(int choice)
     {
-        System.out.println(str);
+        if(choice == 1)
+            System.out.println("I just ate Ramen.");
+        if(choice == 2)
+            System.out.println("I just ate Burger.");
     }
 }
