@@ -9,3 +9,4 @@ Project week 1 Get Started:
 -The program should also have a function to calculate the RMR(resting metabolic rate) for people of different height, weight and gender.
 -The program could track daily calorie count and make a report on whether the person is consuming too much calorie or too little. Whether a person is gaining or losing weight.
 -The program should have a database of the calorie of the most common foods as well as the calorie spent for different physical activities.
+-Here is the link for the first lab, I did some basic setup. https://github.ugrad.cs.ubc.ca/CPSC210-2018W-T1/projectw1_team562/commit/d7b1da8f80b0d30473ba0b47d897e2072c29a06b
