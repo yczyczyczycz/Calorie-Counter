@@ -10,3 +10,18 @@ Project week 1 Get Started:
 -The program could track daily calorie count and make a report on whether the person is consuming too much calorie or too little. Whether a person is gaining or losing weight.
 -The program should have a database of the calorie of the most common foods as well as the calorie spent for different physical activities.
 -Here is the link for the first lab, I did some basic setup. https://github.ugrad.cs.ubc.ca/CPSC210-2018W-T1/projectw1_team562/commit/d7b1da8f80b0d30473ba0b47d897e2072c29a06b
+
+Project week 2 Basic Interaction:
+-Make at least 1 package: ui (done, have 3)
+-Make at least one class named appropriately for your application (done, have 4)
+-Make a main method that gets things going (done)
+-Construct an object (Note: this should probably happen within your main method) (done, DailyCount() in the main)
+-Declare a field and use it (not necessarily at the same time!) (done at many places)
+-Pass a parameter (done, pass the scanner object)
+-Use a local variable (done at many places)
+-Return a value and use it (done, returned the user input and uses it)
+-Use a condition, and a loop (done, used a while loop to get user input until user stops it)
+-Make a call graph from your main method (done)
+-Draw the flowchart for a method with a condition or a loop (done)
+-Get user input, and reflect it back to the user (done)
+-Use the debugger (done, used at least 7 times this week)
