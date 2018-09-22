@@ -1,6 +1,6 @@
 package ui;
 import java.util.Scanner;
-import data.DailyCount;
+import model.DailyCount;
 
 /** The Main class contains the main method that will run the program.
  **
