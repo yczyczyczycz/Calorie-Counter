@@ -21,14 +21,30 @@ public class DailyCount
     }
 
     //REQUIRES: Scanner reader
-    //MODIFIES: this
     //EFFECTS: Asks the user for the food consumed as a String input and stores it
     public void foodEvent(Scanner reader)
     {
         System.out.println("Please type the food you ate.");
         String input = reader.nextLine();
+        addFood(input);
+        /*
         Food justAte = new Food(input);
+        food.add(justAte);*/
+    }
+
+    //REQUIRES: String ate
+    //MODIFIES: this
+    //EFFECTS: Adds one food item to the daily count
+    public void addFood(String ate)
+    {
+        Food justAte = new Food(ate);
         food.add(justAte);
+    }
+
+    //EFFECTS: Returns the number of food items.
+    public int getFoodCount()
+    {
+        return food.size();
     }
 
     //REQUIRES: Scanner reader
@@ -40,8 +56,25 @@ public class DailyCount
         String input1 = reader.next();
         System.out.println("Please type the duration of the activity in hours.");
         int input2 = reader.nextInt();
+        addActivity(input1, input2);
+        /*
         PhysicalActivity justDid = new PhysicalActivity(input1, input2);
+        activity.add(justDid);*/
+    }
+
+    //REQUIRES: String name, double duration, duration cannot be negative
+    //MODIFIES: this
+    //EFFECTS: Adds one activity item to the daily count
+    public void addActivity(String name, double duration)
+    {
+        PhysicalActivity justDid = new PhysicalActivity(name, duration);
         activity.add(justDid);
+    }
+
+    //EFFECTS: Returns the number of activity items.
+    public int getActivityCount()
+    {
+        return activity.size();
     }
 
     //EFFECTS: Returns the total net calorie for the day
@@ -77,6 +110,6 @@ public class DailyCount
         for(PhysicalActivity cur : activity)
             activityList += cur.toString();
 
-        return (foodList + " " + activityList);
+        return (foodList + activityList);
     }
 }

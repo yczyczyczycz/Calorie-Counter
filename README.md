@@ -28,3 +28,11 @@ Project week 2 Basic Interaction:
 https://github.ugrad.cs.ubc.ca/CPSC210-2018W-T1/projectw1_team562/commit/75238748ad1455379eaf02d667f7ba12960db3f9
 
 Project week 3 Abstraction and Testing:
+-Rearranged the project structure to have a main and a test folder to include the test class
+-Added the count calorie method to DailyCount to calculate the total daily calories
+-Reworked the calories list for Food and PhysicalActivity to be a switch function, also added more items
+-Added an option to Main to calculate the daily calories
+-Added REQUIRES, MODIFIES and EFFECTS to all the abstraction classes.
+-Reworked FoodEvent and ActivityEvent, separate each into two methods, one for user input one for adding, easier for testing
+-Wrote two getters for the numbers of food items and activity items
+-Wrote a test class to test DailyCount, Food and PhysicalActivity
