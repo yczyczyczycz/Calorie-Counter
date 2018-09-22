@@ -1,6 +1,6 @@
 package ui;
 import java.util.Scanner;
-import events.DailyCount;
+import data.DailyCount;
 
 /** The Main class contains the main method that will run the program.
  **
@@ -28,6 +28,8 @@ public class Main
             else if(userInput == 2)
                 day.workoutEvent(reader);
             else if(userInput == 3)
+                System.out.println("Total calorie standing is " + day.countCalorie() + " calories.");
+            else if(userInput == 4)
                 System.out.println(day.toString());
         }
 
@@ -40,7 +42,8 @@ public class Main
     private static int getInput(Scanner reader)
     {
         System.out.println("Please choose 1 to input a meal and 2 to input a workout session. " +
-                            "3 to print out a list of meals and workouts. 0 to exit program");
+                            "3 to print out the total amount of calories of the day. " +
+                            "4 to print out a list of meals and workouts. 0 to exit program");
         int n = reader.nextInt();
         reader.nextLine();
 
