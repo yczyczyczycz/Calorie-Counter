@@ -112,4 +112,29 @@ public class DailyCount
 
         return (foodList + activityList);
     }
+
+    //REQUIRES: Scanner reader
+    //EFFECTS: Calculate and print the BMR based on user input
+    public void baseCalorieEvent(Scanner reader)
+    {
+        double height;
+        double weight;
+        int age;
+
+        System.out.println("Please input your height in cm.");
+        height = reader.nextDouble();
+        System.out.println("Please input your weight in kg.");
+        weight = reader.nextDouble();
+        System.out.println("Please input your age in years.");
+        age = reader.nextInt();
+
+        System.out.println("Your base metabolic rate is " + calculateBMR(height, weight, age) + " calories.");
+    }
+
+    //REQUIRES: double height in cm, double weight in kg, int age in years
+    //EFFECTS: Returns the BMR as a double
+    public static double calculateBMR(double height, double weight, int age)
+    {
+        return Math.round(66.5 + (13.75 * weight) + (5.003 * height) - (6.755 * (double)age));
+    }
 }

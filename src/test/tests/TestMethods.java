@@ -73,4 +73,11 @@ public class TestMethods
         day.addFood("fried chicken");
         assertEquals("banana fried chicken swimming for 1.0 hours. ", day.toString());
     }
+
+    //Test calculateBMR
+    @Test
+    public void testCalculateBMR()
+    {
+        assertEquals(1649, DailyCount.calculateBMR(173, 62, 20));
+    }
 }

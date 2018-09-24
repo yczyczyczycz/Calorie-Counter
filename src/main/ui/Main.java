@@ -7,11 +7,17 @@ import model.DailyCount;
  */
 public class Main
 {
+    //Main that runs the program
+    public static void main(String[] args)
+    {
+        runCalorieCounter();
+    }
+
     /** Creates a DailyCount object that will track a user's caloric activities.
      ** It will asks the user for input until the user exits the program.
      ** For now there is an option to print out what the user inputted.
      */
-    public static void main(String[] args)
+    public static void runCalorieCounter()
     {
         DailyCount day = new DailyCount();
         boolean exit = false;
@@ -31,6 +37,8 @@ public class Main
                 System.out.println("Total calorie standing is " + day.countCalorie() + " calories.");
             else if(userInput == 4)
                 System.out.println(day.toString());
+            else if(userInput == 5)
+                day.baseCalorieEvent(reader);
         }
 
         reader.close();
@@ -41,9 +49,9 @@ public class Main
      */
     private static int getInput(Scanner reader)
     {
-        System.out.println("Please choose 1 to input a meal and 2 to input a workout session. " +
+        System.out.println("Please choose 1 to input a meal. 2 to input a workout session. " +
                             "3 to print out the total amount of calories of the day. " +
-                            "4 to print out a list of meals and workouts. 0 to exit program");
+                            "4 to print out a list of meals and workouts. 5 to calculate your BMR. 0 to exit program");
         int n = reader.nextInt();
         reader.nextLine();
 
