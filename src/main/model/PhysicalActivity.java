@@ -1,9 +1,11 @@
 package model;
 
+import interfaces.Doable;
+
 /**
  **
  */
-public class PhysicalActivity
+public class PhysicalActivity implements Doable
 {
     private String activityName;
     private double durationInHour;
@@ -14,7 +16,7 @@ public class PhysicalActivity
      */
     public PhysicalActivity() {}
 
-    //REQUIRES: String name, double duration, duration cannot be negative
+    //REQUIRES: double duration, duration cannot be negative
     //MODIFIES: this
     //EFFECTS: Constructs a PhysicalActivity object with the given name and duration
     public PhysicalActivity(String name, double duration)
@@ -24,16 +26,10 @@ public class PhysicalActivity
         caloriePerHour = getActivityCalorie(name);
     }
 
-    //REQUIRES: String activity
     //EFFECTS: Returns the activity's calorie consumption per hour
     private static double getActivityCalorie(String activity)
     {
         double calorie = 0;
-        /*
-        if(activity.equals("running"))
-            calorie = 600;
-        else if(activity.equals("walking"))
-            calorie = 300;*/
 
         switch (activity)
         {
@@ -60,10 +56,18 @@ public class PhysicalActivity
         return calorie;
     }
 
+    @Override
     //EFFECTS: Returns the calorie of the object
     public double getCalorie()
     {
         return caloriePerHour * durationInHour;
+    }
+
+    @Override
+    //EFFECTS: Returns the name of the exercise
+    public String getName()
+    {
+        return activityName;
     }
 
     //EFFECTS: Prints the activity's name and duration

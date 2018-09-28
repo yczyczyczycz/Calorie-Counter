@@ -1,9 +1,11 @@
 package model;
 
+import interfaces.Edible;
+
 /**
  **
  */
-public class Food
+public class Food implements Edible
 {
     private String foodName;
     private double calorie;
@@ -13,7 +15,6 @@ public class Food
      */
     public Food(){}
 
-    //REQUIRES: String name
     //MODIFIES: this
     //EFFECTS: Constructs a Food object with the given name
     public Food(String name)
@@ -22,16 +23,11 @@ public class Food
         calorie = getFoodCalorie(name);
     }
 
-    //REQUIRES: String food
     //EFFECTS: Returns the calorie of the food inputted
     private static double getFoodCalorie(String food)
     {
         double calorie = 0;
-        /*
-        if(food.equals("burger"))
-            calorie = 500;
-        else if(food.equals("ramen"))
-            calorie = 400;*/
+
         switch (food)
         {
             case "burger":
@@ -57,10 +53,18 @@ public class Food
         return calorie;
     }
 
+    @Override
     //EFFECTS: Returns the calorie of the object
     public double getCalorie()
     {
         return calorie;
+    }
+
+    @Override
+    //EFFECTS: Returns the food's name.
+    public String getName()
+    {
+        return foodName;
     }
 
     //EFFECTS: Prints out the name of the Food object

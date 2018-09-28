@@ -20,7 +20,6 @@ public class DailyCount
         activity = new ArrayList<>();
     }
 
-    //REQUIRES: Scanner reader
     //EFFECTS: Asks the user for the food consumed as a String input and stores it
     public void foodEvent(Scanner reader)
     {
@@ -32,7 +31,6 @@ public class DailyCount
         food.add(justAte);*/
     }
 
-    //REQUIRES: String ate
     //MODIFIES: this
     //EFFECTS: Adds one food item to the daily count
     public void addFood(String ate)
@@ -47,7 +45,6 @@ public class DailyCount
         return food.size();
     }
 
-    //REQUIRES: Scanner reader
     //MODIFIES: this
     //EFFECTS: Asks the user for the activity as a String input and stores it
     public void workoutEvent(Scanner reader)
@@ -62,7 +59,7 @@ public class DailyCount
         activity.add(justDid);*/
     }
 
-    //REQUIRES: String name, double duration, duration cannot be negative
+    //REQUIRES: double duration, duration cannot be negative
     //MODIFIES: this
     //EFFECTS: Adds one activity item to the daily count
     public void addActivity(String name, double duration)
@@ -113,7 +110,6 @@ public class DailyCount
         return (foodList + activityList);
     }
 
-    //REQUIRES: Scanner reader
     //EFFECTS: Calculate and print the BMR based on user input
     public void baseCalorieEvent(Scanner reader)
     {

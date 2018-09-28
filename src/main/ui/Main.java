@@ -49,7 +49,8 @@ public class Main
      */
     private static int getInput(Scanner reader)
     {
-        System.out.println("Please choose 1 to input a meal. 2 to input a workout session. " +
+        System.out.println("Please choose 1 to input a meal. 1" +
+                "2 to input a workout session. " +
                             "3 to print out the total amount of calories of the day. " +
                             "4 to print out a list of meals and workouts. 5 to calculate your BMR. 0 to exit program");
         int n = reader.nextInt();
