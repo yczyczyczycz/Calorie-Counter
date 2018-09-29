@@ -36,3 +36,5 @@ Project week 3 Abstraction and Testing:
 -Reworked FoodEvent and ActivityEvent, separate each into two methods, one for user input one for adding, easier for testing
 -Wrote two getters for the numbers of food items and activity items
 -Wrote a test class to test DailyCount, Food and PhysicalActivity
+
+Project week 4 Types, Interfaces and Saving:

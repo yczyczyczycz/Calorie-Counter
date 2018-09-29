@@ -1,6 +1,8 @@
 package ui;
 import java.util.Scanner;
+import events.inputEvent;
 import model.DailyCount;
+import model.Person;
 
 /** The Main class contains the main method that will run the program.
  **
@@ -19,14 +21,15 @@ public class Main
      */
     public static void runCalorieCounter()
     {
-        DailyCount day = new DailyCount();
         boolean exit = false;
         int userInput;
         Scanner reader = new Scanner(System.in);
+        Person user = inputEvent.setUpUser(reader);
+        DailyCount day = new DailyCount();
 
         while(!exit)
         {
-            userInput = getInput(reader);
+            userInput = inputEvent.getOption(reader);
             if(userInput == 0)
                 exit = true;
             else if(userInput == 1)
@@ -37,25 +40,10 @@ public class Main
                 System.out.println("Total calorie standing is " + day.countCalorie() + " calories.");
             else if(userInput == 4)
                 System.out.println(day.toString());
-            else if(userInput == 5)
-                day.baseCalorieEvent(reader);
         }
 
         reader.close();
     }
 
-    /** Gets the input from user and returns as an integer.
-     ** @return the user input as an integer.
-     */
-    private static int getInput(Scanner reader)
-    {
-        System.out.println("Please choose 1 to input a meal. 1" +
-                "2 to input a workout session. " +
-                            "3 to print out the total amount of calories of the day. " +
-                            "4 to print out a list of meals and workouts. 5 to calculate your BMR. 0 to exit program");
-        int n = reader.nextInt();
-        reader.nextLine();
 
-        return n;
-    }
 }
