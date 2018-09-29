@@ -10,10 +10,12 @@ public class inputEvent {
      */
     public static int getOption(Scanner reader)
     {
-        System.out.println("Please choose 1 to input a meal. 1" +
-                "2 to input a workout session. " +
-                "3 to print out the total amount of calories of the day. " +
-                "4 to print out a list of meals and workouts. 5 to calculate your BMR. 0 to exit program");
+        System.out.println("1 to input a meal.");
+        System.out.println("2 to input a workout session.");
+        System.out.println("3 to print out the total amount of calories of the day.");
+        System.out.println("4 to print out a list of meals and workouts.");
+        System.out.println("5 to save the day's record to user and save it to a text file.");
+        System.out.println("0 to exit program");
         int n = reader.nextInt();
         reader.nextLine();
 
@@ -33,7 +35,7 @@ public class inputEvent {
         System.out.println("Please input your name:");
         name = reader.next();
         System.out.println("Please input your gender. (m for male, f for female)");
-        if(reader.next() == "m")
+        if(reader.next().equals("m"))
             gender = false;
         else
             gender = true;
@@ -61,7 +63,7 @@ public class inputEvent {
         //female
         if(gender)
             rate = Math.round(655.1 + (9.563 * weight) + (1.85 * height) - (4.676 * age));
-            //male
+        //male
         else
             rate = Math.round(66.5 + (13.75 * weight) + (5.003 * height) - (6.755 * age));
 

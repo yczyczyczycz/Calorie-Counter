@@ -33,8 +33,20 @@ Project week 3 Abstraction and Testing:
 -Reworked the calories list for Food and PhysicalActivity to be a switch function, also added more items
 -Added an option to Main to calculate the daily calories
 -Added REQUIRES, MODIFIES and EFFECTS to all the abstraction classes.
--Reworked FoodEvent and ActivityEvent, separate each into two methods, one for user input one for adding, easier for testing
+-Reworked FoodEvent and ActivityEvent, separate each into two methods, one for user input and one for adding, easier for testing
 -Wrote two getters for the numbers of food items and activity items
 -Wrote a test class to test DailyCount, Food and PhysicalActivity
 
 Project week 4 Types, Interfaces and Saving:
+-Completely redesigned the structure of my program,created a new class called Person
+-Person added a new layer above DailyCount, which represents the user
+-The Person class is capable of adding multiple DailyCount objects and it implements Saveable and Loadable
+-Implemented save() and load() for Person, they save from and load to a .txt text file
+-Implemented save() for DailyCount(), which saves the toString() string to a text file
+-Created a new model class Drink that is similar to Food, not yet implemented in my project
+-Created and implemented the interface Doable and Edible for Drink, Food and PhysicalActivity
+-Wrote test class for save and load for Person
+-Reconstructed the Main to ask the user to create a new user or load from a text file
+-Main now has the option to save the DailyCount to Person and save it to a text file and starts a new day
+-Created inputEvent class as a helper class for the entire project
+

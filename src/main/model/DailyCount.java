@@ -1,11 +1,15 @@
 package model;
+import interfaces.Saveable;
+
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
  **
  */
-public class DailyCount
+public class DailyCount implements Saveable
 {
     private ArrayList<Food> food;
     private ArrayList<PhysicalActivity> activity;
@@ -85,21 +89,26 @@ public class DailyCount
     public String toString()
     {
         String foodList = "";
-        /*
-        for(int i = 0; i < food.size(); i++)
-            foodList += food.get(i).toString();
-        */
+
         for(Food cur : food)
             foodList += cur.toString();
 
         String activityList = "";
-        /*
-        for(int i = 0; i < activity.size(); i++)
-            activityList += activity.get(i).toString();
-        */
+
         for(PhysicalActivity cur : activity)
             activityList += cur.toString();
 
         return (foodList + activityList);
+    }
+
+    @Override
+    //REQUIRE:: a scanner and a String that is the name of a txt file
+    public void save(String name)
+    {
+        try(PrintWriter writer = new PrintWriter(name, "UTF-8"))
+        {
+            writer.println(this.toString());
+        }
+        catch(IOException ex){}
     }
 }
