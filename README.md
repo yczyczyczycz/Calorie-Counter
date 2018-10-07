@@ -59,5 +59,6 @@ Project week 5,Abstracts and Extends:
 -Wrote a TestInheritance test class to test the inheritance functionality of DailyCount's superclass arrayList
 -Added a new function for person dailyCalorieDifference to compare daily calorie in and out with BMR
 -Reworked save so only Person saves and Person also saves every single day in the day array
+- https://github.ugrad.cs.ubc.ca/CPSC210-2018W-T1/projectw1_team562/commit/c5149e66aa9f8dc06daa14ccde9f8ff812e6e428
 
 
