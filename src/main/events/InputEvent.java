@@ -3,7 +3,7 @@ package events;
 import java.util.Scanner;
 import model.Person;
 
-public class inputEvent {
+public class InputEvent {
 
     /** Gets the input from user and returns as an integer.
      ** @return the user input as an integer.
@@ -14,7 +14,8 @@ public class inputEvent {
         System.out.println("2 to input a workout session.");
         System.out.println("3 to print out the total amount of calories of the day.");
         System.out.println("4 to print out a list of meals and workouts.");
-        System.out.println("5 to save the day's record to user and save it to a text file.");
+        System.out.println("5 to save the day's record to a text file and start a new day.");
+        System.out.println("6 to calculate the daily calorie difference.");
         System.out.println("0 to exit program");
         int n = reader.nextInt();
         reader.nextLine();

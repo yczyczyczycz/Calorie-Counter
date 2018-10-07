@@ -1,7 +1,8 @@
 package ui;
 
 import java.util.Scanner;
-import events.inputEvent;
+
+import events.InputEvent;
 import model.DailyCount;
 import model.Person;
 
@@ -22,7 +23,6 @@ public class Main
      */
     public static void runCalorieCounter()
     {
-        boolean exit = false;
         int userInput;
         Scanner reader = new Scanner(System.in);
         Person user;
@@ -30,8 +30,7 @@ public class Main
         userInput = reader.nextInt();
         if(userInput == 1)
         {
-            user = inputEvent.setUpUser(reader);
-            user.save("user.txt");
+            user = InputEvent.setUpUser(reader);
         }
         else
         {
@@ -44,11 +43,18 @@ public class Main
         }
 
         DailyCount day = new DailyCount();
+        exeCommands(user, day, reader);
+        reader.close();
+    }
+
+    public static void exeCommands(Person user, DailyCount day, Scanner reader)
+    {
+        boolean exit = false;
+        int userInput;
 
         while(!exit)
         {
-
-            userInput = inputEvent.getOption(reader);
+            userInput = InputEvent.getOption(reader);
             if(userInput == 0)
                 exit = true;
             else if(userInput == 1)
@@ -64,15 +70,13 @@ public class Main
                 String fileName;
                 System.out.println("Please enter the file name.");
                 fileName = reader.next();
-                day.save(fileName);
                 user.addDayCount(day);
+                user.save(fileName);
                 day = new DailyCount();
             }
-
+            else if(userInput == 6)
+                System.out.println(user.dailyCalorieDifference(day));
         }
-
-        reader.close();
     }
-
 
 }

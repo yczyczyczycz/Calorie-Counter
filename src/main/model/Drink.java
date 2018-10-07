@@ -1,34 +1,56 @@
 package model;
 
-import interfaces.Edible;
-
-public class Drink implements Edible {
-
-    private String drinkName;
+public class Drink extends CalorieIn
+{
     private double volume;
-    private double caloriePerML;
 
-    //Default constructor
-    public Drink() {
-    }
-
-    ;
     //Constructor
     public Drink(String name, double vol)
     {
-        drinkName = name;
+        super(name);
         volume = vol;
     }
 
+    //MODIFIES: this
+    //EFFECTS: Set the calorie of the object
     @Override
-    public double getCalorie()
+    public void setFoodCalorie(String food)
     {
-        return volume * caloriePerML;
+        double calorie = 0;
+
+        switch (food)
+        {
+            case "cola":
+                calorie = 0.38;
+                break;
+            case "milk":
+                calorie = 0.42;
+                break;
+            case "beer":
+                calorie = 0.43;
+                break;
+            case "orange juice":
+                calorie = 0.45;
+                break;
+            case "diet coke":
+                calorie = 0;
+                break;
+            default:
+                calorie = 0;
+                break;
+        }
+        this.calorie = calorie;
     }
 
-    @Override
-    public String getName()
+
+    public double getCalorie()
     {
-        return drinkName;
+        return volume * this.calorie;
     }
+
+    public String toString()
+    {
+        return (volume + " ml of " + foodName + " ");
+    }
+
 }

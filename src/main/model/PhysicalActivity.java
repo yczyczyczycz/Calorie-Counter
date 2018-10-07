@@ -1,33 +1,23 @@
 package model;
 
-import interfaces.Doable;
+import interfaces.CalorieCountable;
 
 /**
  **
  */
-public class PhysicalActivity implements Doable
+public class PhysicalActivity extends CalorieOut
 {
-    private String activityName;
-    private double durationInHour;
-    private double caloriePerHour;
-
-    /** Empty default constructor.
-     **
-     */
-    public PhysicalActivity() {}
-
     //REQUIRES: double duration, duration cannot be negative
     //MODIFIES: this
     //EFFECTS: Constructs a PhysicalActivity object with the given name and duration
     public PhysicalActivity(String name, double duration)
     {
-        activityName = name;
-        durationInHour = duration;
-        caloriePerHour = getActivityCalorie(name);
+        super(name, duration);
     }
 
-    //EFFECTS: Returns the activity's calorie consumption per hour
-    private static double getActivityCalorie(String activity)
+    //MODIFIES: this
+    //EFFECTS: Sets the caloriePerHour for the object
+    public void setActivityCalorie(String activity)
     {
         double calorie = 0;
 
@@ -53,26 +43,6 @@ public class PhysicalActivity implements Doable
                 break;
         }
 
-        return calorie;
-    }
-
-    @Override
-    //EFFECTS: Returns the calorie of the object
-    public double getCalorie()
-    {
-        return caloriePerHour * durationInHour;
-    }
-
-    @Override
-    //EFFECTS: Returns the name of the exercise
-    public String getName()
-    {
-        return activityName;
-    }
-
-    //EFFECTS: Prints the activity's name and duration
-    public String toString()
-    {
-        return (activityName + " for " + durationInHour + " hours. ");
+        this.caloriePerHour = calorie;
     }
 }

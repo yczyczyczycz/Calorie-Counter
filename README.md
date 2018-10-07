@@ -50,3 +50,14 @@ Project week 4 Types, Interfaces and Saving:
 -Main now has the option to save the DailyCount to Person and save it to a text file and starts a new day
 -Created inputEvent class as a helper class for the entire project
 
+Project week 5,Abstracts and Extends:
+-Edible and Doable is now just CalorieCountable
+-New super class CalorieIn that has two subclasses food and drink, new super class CalorieOut now has subclass PhysicalActivity
+-Reconstructed the code in main, Drink, Food, PhysicalActivity and DailyCount to accommodate the changes
+-CalorieIn and CalorieOut are abstract classes, food and drink have different setFoodCalorie function (difference is drink has volume in ml)
+-DailyCount now has arraylist for CalorieIn and CalorieOut as apparent types but takes in Food and Drink actual types
+-Wrote a TestInheritance test class to test the inheritance functionality of DailyCount's superclass arrayList
+-Added a new function for person dailyCalorieDifference to compare daily calorie in and out with BMR
+-Reworked save so only Person saves and Person also saves every single day in the day array
+
+

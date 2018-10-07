@@ -9,10 +9,10 @@ import java.util.Scanner;
 /**
  **
  */
-public class DailyCount implements Saveable
+public class DailyCount
 {
-    private ArrayList<Food> food;
-    private ArrayList<PhysicalActivity> activity;
+    private ArrayList<CalorieIn> food;
+    private ArrayList<CalorieOut> activity;
 
     //MODIFIES: this
     //EFFECTS: Constructs a DailyCount object that keep tracks of calories in and out
@@ -25,9 +25,24 @@ public class DailyCount implements Saveable
     //EFFECTS: Asks the user for the food consumed as a String input and stores it
     public void foodEvent(Scanner reader)
     {
-        System.out.println("Please type the food you ate.");
-        String input = reader.nextLine();
-        addFood(input);
+        System.out.println("Please type 1 for food and 2 for drink.");
+        int userInput = reader.nextInt();
+        if(userInput == 1)
+        {
+            System.out.println("Please type the food you ate.");
+            String input = reader.next();
+            addFood(input);
+        }
+
+        else if(userInput == 2)
+        {
+            System.out.println("Please type the drink you drank.");
+            String input = reader.next();
+            System.out.println("Please type the amount in ml");
+            double amount = reader.nextDouble();
+            addDrink(input, amount);
+        }
+
     }
 
     //MODIFIES: this
@@ -36,6 +51,14 @@ public class DailyCount implements Saveable
     {
         Food justAte = new Food(ate);
         food.add(justAte);
+    }
+
+    //MODIFIES: this
+    //EFFECTS: Adds one drink item to the daily count
+    public void addDrink(String ate, double amount)
+    {
+        Drink justDrank = new Drink(ate, amount);
+        food.add(justDrank);
     }
 
     //EFFECTS: Returns the number of food items.
@@ -76,10 +99,10 @@ public class DailyCount implements Saveable
     {
         double total = 0;
 
-        for(Food cur : food)
+        for(CalorieIn cur : food)
             total += cur.getCalorie();
 
-        for(PhysicalActivity cur : activity)
+        for(CalorieOut cur : activity)
             total -= cur.getCalorie();
 
         return total;
@@ -90,25 +113,14 @@ public class DailyCount implements Saveable
     {
         String foodList = "";
 
-        for(Food cur : food)
+        for(CalorieIn cur : food)
             foodList += cur.toString();
 
         String activityList = "";
 
-        for(PhysicalActivity cur : activity)
+        for(CalorieOut cur : activity)
             activityList += cur.toString();
 
-        return (foodList + activityList);
-    }
-
-    @Override
-    //REQUIRE:: a scanner and a String that is the name of a txt file
-    public void save(String name)
-    {
-        try(PrintWriter writer = new PrintWriter(name, "UTF-8"))
-        {
-            writer.println(this.toString());
-        }
-        catch(IOException ex){}
+        return ("In: " + foodList + "Out: " + activityList);
     }
 }

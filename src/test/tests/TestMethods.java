@@ -1,16 +1,18 @@
 package tests;
 
 import model.DailyCount;
+import model.Person;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class TestMethods
 {
+    private Person user;
     private DailyCount day;
 
     @BeforeEach
-    public void runBefore() { day = new DailyCount(); }
+    public void runBefore() { day = new DailyCount(); user = new Person(); }
 
     // Test constructor, getFoodCount and getActivityCount
     @Test
@@ -71,7 +73,15 @@ public class TestMethods
         day.addFood("banana");
         day.addActivity("swimming", 1);
         day.addFood("fried chicken");
-        assertEquals("banana fried chicken swimming for 1.0 hours. ", day.toString());
+        assertEquals("In: banana fried chicken Out: swimming for 1.0 hours. ", day.toString());
     }
 
+    @Test
+    //Test dailyCalorieDifference
+    public void TestDailyCalorieDifference()
+    {
+        user.changeUserInfo("Superman", 24, 182, 65, false);
+        day.addFood("burger");
+        assertEquals(-1209.0,user.dailyCalorieDifference(day));
+    }
 }

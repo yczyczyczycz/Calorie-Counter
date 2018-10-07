@@ -2,6 +2,8 @@ package model;
 
 import java.io.*;
 import java.util.ArrayList;
+
+import events.InputEvent;
 import interfaces.Loadable;
 import interfaces.Saveable;
 
@@ -41,6 +43,11 @@ public class Person implements Loadable, Saveable{
         dayCount.add(day);
     }
 
+    public double dailyCalorieDifference(DailyCount day)
+    {
+        return day.countCalorie() - BMR;
+    }
+
     public String toString()
     {
         String info;
@@ -72,10 +79,17 @@ public class Person implements Loadable, Saveable{
                 writer.println("male");
             writer.println(BMR);
 
+            //Now saves each day
+            for(int i = 0; i < dayCount.size(); i++)
+            {
+                writer.println(dayCount.get(i).toString());
+            }
         }
         catch(IOException ex){}
     }
 
+    //MODIFIES: this
+    //EFFECTS: Load the attributes from a text file and store it into this object
     @Override
     public void load(String name)
     {
@@ -100,4 +114,17 @@ public class Person implements Loadable, Saveable{
         }
         catch(FileNotFoundException ex){}
     }
+
+    //MODIFIES: THIS
+    //EFFECTS: Mutator for all the fields
+    public void changeUserInfo(String name, int age, double height, double weight, boolean gender)
+    {
+        this.name = name;
+        this.age = age;
+        this.height = height;
+        this.weight = weight;
+        this.gender = gender;
+        this.BMR = InputEvent.calculateBMR(age, height, weight, gender);
+    }
+
 }
