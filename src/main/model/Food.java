@@ -1,8 +1,5 @@
 package model;
 
-/**
- **
- */
 public class Food extends CalorieIn
 {
     //MODIFIES: this
