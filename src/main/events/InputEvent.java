@@ -1,6 +1,9 @@
 package events;
 
 import java.util.Scanner;
+
+import exceptions.NotValidInputException;
+import exceptions.NotValidOptionException;
 import model.Person;
 
 public class InputEvent {
@@ -8,7 +11,7 @@ public class InputEvent {
     /** Gets the input from user and returns as an integer.
      ** @return the user input as an integer.
      */
-    public static int getOption(Scanner reader)
+    public static int getOption(Scanner reader) throws NotValidOptionException
     {
         System.out.println("1 to input a meal.");
         System.out.println("2 to input a workout session.");
@@ -19,12 +22,13 @@ public class InputEvent {
         System.out.println("0 to exit program");
         int n = reader.nextInt();
         reader.nextLine();
-
+        if(n < 0 || n > 7)
+            throw new NotValidOptionException();
         return n;
     }
 
     //EFFECTS: Set up the user
-    public static Person setUpUser(Scanner reader)
+    public static Person setUpUser(Scanner reader) throws NotValidInputException
     {
         String name;
         double height;
@@ -48,6 +52,9 @@ public class InputEvent {
         System.out.println("Please input your age in years.");
         age = reader.nextInt();
 
+        if(name.equals("") || height <= 0 || weight <= 0 || age <= 0)
+            throw new NotValidInputException();
+        
         rate = calculateBMR(age, height, weight, gender);
 
         Person user = new Person(name, age, height, weight, gender, rate);

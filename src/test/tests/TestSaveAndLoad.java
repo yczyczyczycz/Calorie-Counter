@@ -6,6 +6,7 @@ import model.Person;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -28,7 +29,9 @@ public class TestSaveAndLoad {
         System.out.println(user.toString());
         user.save("userTest.txt");
         Person user2 = new Person();
-        user2.load("userTest.txt");
+        try{
+            user2.load("userTest.txt");
+        }catch(FileNotFoundException e){}
         System.out.println(user2.toString());
         assertTrue(user.toString().equals(user2.toString()));
     }

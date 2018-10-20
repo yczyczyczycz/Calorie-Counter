@@ -61,4 +61,13 @@ Project week 5,Abstracts and Extends:
 -Reworked save so only Person saves and Person also saves every single day in the day array
 - https://github.ugrad.cs.ubc.ca/CPSC210-2018W-T1/projectw1_team562/commit/c5149e66aa9f8dc06daa14ccde9f8ff812e6e428
 
+Project week 6, Robustness
+-Created NotValidInputException for inputting inputs that aren't correct. For example, negative age or weight and so on.
+-Created NotValidOptionException for inputting something other than the menu options when prompt.
+-Caught and handled FileNotFoundException for loading files.
+-Caught and handled the run time exception MismatchInputException for when inputting wrong data types during prompt.
+-Every exception are handled within a loop so the program continues running when an exception is handled.
+-Added catch block for RuntimeException to catch and handle all other unexpected run time exception.
+-Wrote TestExceptions test class to test user loading from a text file and user setup.
+
 

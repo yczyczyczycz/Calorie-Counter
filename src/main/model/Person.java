@@ -4,6 +4,7 @@ import java.io.*;
 import java.util.ArrayList;
 
 import events.InputEvent;
+import exceptions.NotValidInputException;
 import interfaces.Loadable;
 import interfaces.Saveable;
 
@@ -27,8 +28,11 @@ public class Person implements Loadable, Saveable{
     //REQUIRE: age must be greater than 0, height in cm, weight in kg, false is male and true is female
     //MODIFIES: this
     //EFFECT: Construct a person object
-    public Person(String name, int age, double height, double weight, boolean gender, double BMR)
+    public Person(String name, int age, double height, double weight, boolean gender, double BMR) throws NotValidInputException
     {
+        if(name.equals("") || height <= 0 || weight <= 0 || age <= 0)
+            throw new NotValidInputException();
+
         dayCount = new ArrayList<>();
         this.name = name;
         this.age = age;
@@ -91,28 +95,24 @@ public class Person implements Loadable, Saveable{
     //MODIFIES: this
     //EFFECTS: Load the attributes from a text file and store it into this object
     @Override
-    public void load(String name)
+    public void load(String name) throws FileNotFoundException
     {
-        try(Scanner reader = new Scanner(new FileReader(name)))
-        {
-            this.name = reader.next();
-            reader.nextLine();
-            age = reader.nextInt();
-            reader.nextLine();
-            height = reader.nextDouble();
-            reader.nextLine();
-            weight = reader.nextDouble();
-            reader.nextLine();
-            String sex;
-            if(reader.next().equals("female"))
-                gender = true;
-            else
-                gender = false;
-            reader.nextLine();
-            BMR = reader.nextDouble();
-
-        }
-        catch(FileNotFoundException ex){}
+        Scanner reader = new Scanner(new FileReader(name));
+        this.name = reader.next();
+        reader.nextLine();
+        age = reader.nextInt();
+        reader.nextLine();
+        height = reader.nextDouble();
+        reader.nextLine();
+        weight = reader.nextDouble();
+        reader.nextLine();
+        String sex;
+        if(reader.next().equals("female"))
+            gender = true;
+        else
+            gender = false;
+        reader.nextLine();
+        BMR = reader.nextDouble();
     }
 
     //MODIFIES: THIS
