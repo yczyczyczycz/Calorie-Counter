@@ -19,10 +19,12 @@ public class InputEvent {
         System.out.println("4 to print out a list of meals and workouts.");
         System.out.println("5 to save the day's record to a text file and start a new day.");
         System.out.println("6 to calculate the daily calorie difference.");
+        System.out.println("7 to remove a day from the user.");
+        System.out.println("8 to print out all the days.");
         System.out.println("0 to exit program");
         int n = reader.nextInt();
         reader.nextLine();
-        if(n < 0 || n > 7)
+        if(n < 0 || n > 8)
             throw new NotValidOptionException();
         return n;
     }

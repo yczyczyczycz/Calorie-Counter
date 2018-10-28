@@ -10,11 +10,12 @@ public class PhysicalActivity extends CalorieOut
     //REQUIRES: double duration, duration cannot be negative
     //MODIFIES: this
     //EFFECTS: Constructs a PhysicalActivity object with the given name and duration
-    public PhysicalActivity(String name, double duration)
+    public PhysicalActivity(String name, double duration, CalorieCounterDatabase ccd)
     {
-        super(name, duration);
+        super(name, duration,ccd);
     }
 
+    /*
     //MODIFIES: this
     //EFFECTS: Sets the caloriePerHour for the object
     public void setActivityCalorie(String activity)
@@ -44,5 +45,11 @@ public class PhysicalActivity extends CalorieOut
         }
 
         this.caloriePerHour = calorie;
+    }*/
+
+    @Override
+    public void setActivityCalorie(String activity, CalorieCounterDatabase ccd)
+    {
+        this.caloriePerHour = ccd.setupCalorie(activity);
     }
 }

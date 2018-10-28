@@ -70,4 +70,11 @@ Project week 6, Robustness
 -Added catch block for RuntimeException to catch and handle all other unexpected run time exception.
 -Wrote TestExceptions test class to test user loading from a text file and user setup.
 
-
+Project week 8: Data Relationships
+-Added one to many relationship between Person and DailyCount.
+-Created a new class CalorieCounterDatabase that stores data using a hashmap.
+-The hashmap is constructed in Person and passed to each DailyCount
+-When a Person adds a DailyConut the DailyCount will add that person as a user
+-When a Person removes a DailyCount the DailyCount will remove the person as a user
+-DailyCount cannot add Person as a user, that function will not exist in my program
+-The entire program was redesigned to implement CalorieCounterDatabase

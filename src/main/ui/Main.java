@@ -47,6 +47,7 @@ public class Main
             System.out.println("You loaded user info:");
             System.out.println(user.toString());
         }
+        user.addDayCount(day);
         exeCommands(user, day, reader);
         reader.close();
     }
@@ -116,7 +117,9 @@ public class Main
             if(userInput == 0)
                 exit = true;
             else if(userInput == 1)
-                day.foodEvent(reader);
+            {
+                    day.foodEvent(reader);
+            }
             else if(userInput == 2)
                 day.workoutEvent(reader);
             else if(userInput == 3)
@@ -128,12 +131,23 @@ public class Main
                 String fileName;
                 System.out.println("Please enter the file name.");
                 fileName = reader.next();
-                user.addDayCount(day);
                 user.save(fileName);
                 day = new DailyCount();
+                user.addDayCount(day);
             }
             else if(userInput == 6)
                 System.out.println(user.dailyCalorieDifference(day));
+            else if(userInput == 7)
+            {
+                System.out.println("Please enter a day to remove.");
+                int toRemove = reader.nextInt();
+                user.removeDayCount(user.retrieveDay(toRemove));
+            }
+            else if(userInput == 8)
+            {
+                System.out.println(user.toString());
+                user.printAllDay();
+            }
         }
     }
 
@@ -158,12 +172,13 @@ public class Main
                 inputCorrect = false;
                 System.out.println("Unexpected error. Please enter again.");
             }
+            /*
             finally
             {
                 System.out.println("Enter any key to continue, 0 to exit.");
                 if(reader.next().equals("0"))
                     System.exit(0);
-            }
+            }*/
         }
         return result;
     }

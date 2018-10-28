@@ -4,13 +4,14 @@ public class Food extends CalorieIn
 {
     //MODIFIES: this
     //EFFECTS: Constructs a Food object with the given name
-    public Food(String name)
+    public Food(String name, CalorieCounterDatabase ccd)
     {
-        super(name);
+        super(name, ccd);
     }
 
     //MODIFIES: this
     //EFFECTS: Set the calorie of the object
+    /*
     @Override
     public void setFoodCalorie(String food)
     {
@@ -38,5 +39,11 @@ public class Food extends CalorieIn
                 break;
         }
         this.calorie = calorie;
+    }*/
+    @Override
+    public void setFoodCalorie(String food, CalorieCounterDatabase ccd)
+    {
+        this.calorie = ccd.setupCalorie(food);
     }
+
 }

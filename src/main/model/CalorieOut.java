@@ -9,11 +9,11 @@ public abstract class CalorieOut implements CalorieCountable {
 
     //MODIFIES: this
     //EFFECTS: Constructs a Food object with the given name
-    public CalorieOut(String name, double duration)
+    public CalorieOut(String name, double duration, CalorieCounterDatabase ccd)
     {
         activityName = name;
         durationInHour = duration;
-        this.setActivityCalorie(name);
+        this.setActivityCalorie(name, ccd);
     }
 
     @Override
@@ -37,5 +37,5 @@ public abstract class CalorieOut implements CalorieCountable {
         return (activityName + " for " + durationInHour + " hours. ");
     }
 
-    public abstract void setActivityCalorie(String activity);
+    public abstract void setActivityCalorie(String activity, CalorieCounterDatabase ccd);
 }

@@ -18,11 +18,15 @@ public class Person implements Loadable, Saveable{
     private double weight;
     private boolean gender;
     private double BMR;
+    private CalorieCounterDatabase ccd;
+
 
     //Default constructor
     public Person()
     {
         dayCount = new ArrayList<>();
+        ccd = new CalorieCounterDatabase();
+        ccd.databaseSetup();
     }
 
     //REQUIRE: age must be greater than 0, height in cm, weight in kg, false is male and true is female
@@ -40,16 +44,50 @@ public class Person implements Loadable, Saveable{
         this.weight = weight;
         this.gender = gender;
         this.BMR = BMR;
+
+        ccd = new CalorieCounterDatabase();
+        ccd.databaseSetup();
     }
 
     public void addDayCount(DailyCount day)
     {
-        dayCount.add(day);
+        if(!dayCount.contains(day))
+        {
+            dayCount.add(day);
+            day.setupDatabase(ccd);
+            day.setUser(this);
+        }
+    }
+
+    public void removeDayCount(DailyCount day)
+    {
+        if(dayCount.contains(day))
+        {
+            dayCount.remove(day);
+            day.removeUser();
+        }
+    }
+
+    public DailyCount retrieveDay(int num)
+    {
+        for(int i = 0; i < dayCount.size(); i++)
+        {
+            if(num == dayCount.get(i).getDayNum())
+                return dayCount.get(i);
+        }
+
+        return null;
     }
 
     public double dailyCalorieDifference(DailyCount day)
     {
         return day.countCalorie() - BMR;
+    }
+
+    public void printAllDay()
+    {
+        for(int i = 0; i < dayCount.size(); i++)
+            System.out.println(dayCount.get(i).toString());
     }
 
     public String toString()

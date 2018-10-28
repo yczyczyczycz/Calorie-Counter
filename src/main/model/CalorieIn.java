@@ -9,14 +9,14 @@ public abstract class CalorieIn implements CalorieCountable {
 
     //MODIFIES: this
     //EFFECTS: Constructs a Food object with the given name
-    public CalorieIn(String name)
+    public CalorieIn(String name, CalorieCounterDatabase ccd)
     {
         foodName = name;
-        this.setFoodCalorie(name);
+        this.setFoodCalorie(name, ccd);
+
     }
 
-    //EFFECTS: Returns the calorie of the food inputted
-    public abstract void setFoodCalorie(String food);
+    public abstract void setFoodCalorie(String food, CalorieCounterDatabase ccd);
 
 
     @Override
