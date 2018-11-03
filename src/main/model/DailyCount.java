@@ -17,7 +17,6 @@ public class DailyCount
     private int uniqueNum;
     private ArrayList<CalorieIn> food;
     private ArrayList<CalorieOut> activity;
-    private Person user;
     private CalorieCounterDatabase ccd;
 
     //MODIFIES: this
@@ -27,11 +26,11 @@ public class DailyCount
         uniqueNum = dayNumber;
         food = new ArrayList<>();
         activity = new ArrayList<>();
-        user = null;
         dayNumber++;
     }
 
     //EFFECTS: Asks the user for the food consumed as a String input and stores it
+    /*
     public void foodEvent(Scanner reader)
     {
         System.out.println("Please type 1 for food and 2 for drink.");
@@ -62,8 +61,7 @@ public class DailyCount
             double amount = reader.nextDouble();
             addDrink(input, amount);
         }
-
-    }
+    }*/
 
     //MODIFIES: this
     //EFFECTS: Adds one food item to the daily count
@@ -90,6 +88,7 @@ public class DailyCount
 
     //MODIFIES: this
     //EFFECTS: Asks the user for the activity as a String input and stores it
+    /*
     public void workoutEvent(Scanner reader)
     {
         System.out.println("Please type the activity you did.");
@@ -97,7 +96,7 @@ public class DailyCount
         System.out.println("Please type the duration of the activity in hours.");
         int input2 = reader.nextInt();
         addActivity(input1, input2);
-    }
+    }*/
 
     //REQUIRES: double duration, duration cannot be negative
     //MODIFIES: this
@@ -142,16 +141,6 @@ public class DailyCount
             activityList += cur.toString();
 
         return ("In: " + foodList + "Out: " + activityList);
-    }
-
-    public void setUser(Person per)
-    {
-        user = per;
-    }
-
-    public void removeUser()
-    {
-        user = null;
     }
 
     public void setupDatabase(CalorieCounterDatabase ccd)

@@ -3,7 +3,6 @@ package model;
 import java.io.*;
 import java.util.ArrayList;
 
-import events.InputEvent;
 import exceptions.NotValidInputException;
 import interfaces.Loadable;
 import interfaces.Saveable;
@@ -55,7 +54,6 @@ public class Person implements Loadable, Saveable{
         {
             dayCount.add(day);
             day.setupDatabase(ccd);
-            day.setUser(this);
         }
     }
 
@@ -64,7 +62,6 @@ public class Person implements Loadable, Saveable{
         if(dayCount.contains(day))
         {
             dayCount.remove(day);
-            day.removeUser();
         }
     }
 
@@ -162,7 +159,23 @@ public class Person implements Loadable, Saveable{
         this.height = height;
         this.weight = weight;
         this.gender = gender;
-        this.BMR = InputEvent.calculateBMR(age, height, weight, gender);
+        setBMR(age, height, weight, gender);
+    }
+
+    //REQUIRES: double height in cm, double weight in kg, int age is greater than 0, false is male and true is female
+    //EFFECTS: Returns the BMR as a double
+    public void setBMR(int age, double height, double weight, boolean gender)
+    {
+        double rate;
+
+        //female
+        if(gender)
+            rate = Math.round(655.1 + (9.563 * weight) + (1.85 * height) - (4.676 * age));
+        //male
+        else
+            rate = Math.round(66.5 + (13.75 * weight) + (5.003 * height) - (6.755 * age));
+
+        this.BMR = rate;
     }
 
 }

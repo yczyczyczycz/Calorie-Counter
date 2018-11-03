@@ -15,38 +15,6 @@ public class PhysicalActivity extends CalorieOut
         super(name, duration,ccd);
     }
 
-    /*
-    //MODIFIES: this
-    //EFFECTS: Sets the caloriePerHour for the object
-    public void setActivityCalorie(String activity)
-    {
-        double calorie = 0;
-
-        switch (activity)
-        {
-            case "running":
-                calorie = 600;
-                break;
-            case "walking":
-                calorie = 300;
-                break;
-            case "swimming":
-                calorie = 800;
-                break;
-            case "biking":
-                calorie = 400;
-                break;
-            case "basketball":
-                calorie = 700;
-                break;
-            default:
-                calorie = 0;
-                break;
-        }
-
-        this.caloriePerHour = calorie;
-    }*/
-
     @Override
     public void setActivityCalorie(String activity, CalorieCounterDatabase ccd)
     {

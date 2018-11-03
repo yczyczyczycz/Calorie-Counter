@@ -78,3 +78,19 @@ Project week 8: Data Relationships
 -When a Person removes a DailyCount the DailyCount will remove the person as a user
 -DailyCount cannot add Person as a user, that function will not exist in my program
 -The entire program was redesigned to implement CalorieCounterDatabase
+
+Project week 9: Design Principles
+High Coupling:
+-Main has high coupling between Person and DailyCount.One Person object and many DailyCount objects are created
+in Main so any change to their constructor will cause Main to bug
+-Some code duplication between FoodEvent and WorkoutEvent in DailyCount
+-Person calls many methods from DailyCount. A change in DailyCount would surely main Person would require some change
+Low Cohesion:
+-CalculateBMR maybe does not belong to InputEvent nor the Person class
+-FoodEvent and WorkoutEvent do not belong to DailyCount class
+-Many helper function in Main do not belong in Main
+Fixes:
+-Completely removed InputEvent, I felt that the name didn't match its function and it's methods were out of place
+-New class InputHelper that received workoutEvent and foodEvent from DailyCount, some helper method from InputEvent
+and some methods from Main
+-CalculateBMR moved to Person and is now setBMR in Person

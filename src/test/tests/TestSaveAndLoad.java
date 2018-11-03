@@ -1,13 +1,10 @@
 package tests;
 
-import events.InputEvent;
-import model.DailyCount;
 import model.Person;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.io.FileNotFoundException;
-import java.util.Scanner;
 
 import static org.junit.jupiter.api.Assertions.*;
 
