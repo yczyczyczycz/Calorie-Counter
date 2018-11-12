@@ -76,14 +76,14 @@ public class InputHelper {
         }
     }
 
-    public static Person setUpCorrectUser(Scanner reader)
+    public static void setUpCorrectUser(Person user, Scanner reader)
     {
         boolean inputCorrect = false;
-        Person user = new Person();
+
         while(!inputCorrect) {
             inputCorrect = true;
             try {
-                user = setUpUser(reader);
+                setUpUser(user, reader);
             } catch (NotValidInputException e) {
                 inputCorrect = false;
                 System.out.println("Invalid input. Please input again.");
@@ -102,7 +102,6 @@ public class InputHelper {
                     System.exit(0);
             }
         }
-        return user;
     }
 
     public static void exeCommands(Person user, DailyCount day, Scanner reader)
@@ -116,9 +115,7 @@ public class InputHelper {
             if(userInput == 0)
                 exit = true;
             else if(userInput == 1)
-            {
                 InputHelper.foodEvent(reader, day);
-            }
             else if(userInput == 2)
                 InputHelper.workoutEvent(reader, day);
             else if(userInput == 3)
@@ -127,26 +124,27 @@ public class InputHelper {
                 System.out.println(day.toString());
             else if(userInput == 5)
             {
-                String fileName;
                 System.out.println("Please enter the file name.");
-                fileName = reader.next();
-                user.save(fileName);
+                user.save(reader.next());
                 day = new DailyCount();
                 user.addDayCount(day);
             }
             else if(userInput == 6)
-                System.out.println(user.dailyCalorieDifference(day));
+                System.out.println("Your daily calorie difference is " + day.dailyCalorieDifference());
             else if(userInput == 7)
             {
                 System.out.println("Please enter a day to remove.");
-                int toRemove = reader.nextInt();
-                user.removeDayCount(user.retrieveDay(toRemove));
+                user.removeDayCount(user.retrieveDay(reader.nextInt()));
             }
             else if(userInput == 8)
             {
                 System.out.println(user.toString());
                 user.printAllDay();
             }
+            else if(userInput == 9)
+                setUpCorrectUser(user, reader);
+            else
+                System.out.println("I did not recognize that command.");
         }
     }
 
@@ -175,7 +173,7 @@ public class InputHelper {
         return result;
     }
 
-    public static Person setUpUser(Scanner reader) throws NotValidInputException
+    public static void setUpUser(Person user, Scanner reader) throws NotValidInputException
     {
         String name;
         double height;
@@ -202,9 +200,8 @@ public class InputHelper {
         if(name.equals("") || height <= 0 || weight <= 0 || age <= 0)
             throw new NotValidInputException();
 
-        Person user = new Person(name, age, height, weight, gender, 0);
+        user.changeUserInfo(name, age, height, weight, gender);
         user.setBMR(age, height, weight, gender);
-        return user;
     }
 
     public static int getOption(Scanner reader) throws NotValidOptionException
@@ -217,10 +214,11 @@ public class InputHelper {
         System.out.println("6 to calculate the daily calorie difference.");
         System.out.println("7 to remove a day from the user.");
         System.out.println("8 to print out all the days.");
+        System.out.println("9 to change user information.");
         System.out.println("0 to exit program");
         int n = reader.nextInt();
         reader.nextLine();
-        if(n < 0 || n > 8)
+        if(n < 0 || n > 9)
             throw new NotValidOptionException();
         return n;
     }

@@ -32,7 +32,7 @@ public class TestExceptions {
             fail("Did not throw exception.");
         }catch(FileNotFoundException e) {}
     }
-
+    /*
     @Test
     public void testUserSetup()
     {
@@ -48,4 +48,5 @@ public class TestExceptions {
             fail("Did not throw exception.");
         }catch(NotValidInputException e) {}
     }
+    */
 }

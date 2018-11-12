@@ -6,10 +6,11 @@ import java.util.ArrayList;
 import exceptions.NotValidInputException;
 import interfaces.Loadable;
 import interfaces.Saveable;
+import observer.Subject;
 
 import java.util.Scanner;
 
-public class Person implements Loadable, Saveable{
+public class Person extends Subject implements Loadable, Saveable{
     private ArrayList<DailyCount> dayCount;
     private String name;
     private int age;
@@ -31,6 +32,7 @@ public class Person implements Loadable, Saveable{
     //REQUIRE: age must be greater than 0, height in cm, weight in kg, false is male and true is female
     //MODIFIES: this
     //EFFECT: Construct a person object
+    /*
     public Person(String name, int age, double height, double weight, boolean gender, double BMR) throws NotValidInputException
     {
         if(name.equals("") || height <= 0 || weight <= 0 || age <= 0)
@@ -47,6 +49,7 @@ public class Person implements Loadable, Saveable{
         ccd = new CalorieCounterDatabase();
         ccd.databaseSetup();
     }
+    */
 
     public void addDayCount(DailyCount day)
     {
@@ -54,6 +57,8 @@ public class Person implements Loadable, Saveable{
         {
             dayCount.add(day);
             day.setupDatabase(ccd);
+            addObserver(day);
+            day.setUserBMR(BMR);
         }
     }
 
@@ -76,10 +81,12 @@ public class Person implements Loadable, Saveable{
         return null;
     }
 
+    /*
     public double dailyCalorieDifference(DailyCount day)
     {
         return day.countCalorie() - BMR;
     }
+    */
 
     public void printAllDay()
     {
@@ -160,6 +167,7 @@ public class Person implements Loadable, Saveable{
         this.weight = weight;
         this.gender = gender;
         setBMR(age, height, weight, gender);
+        notifyObservers(BMR);
     }
 
     //REQUIRES: double height in cm, double weight in kg, int age is greater than 0, false is male and true is female
@@ -177,5 +185,4 @@ public class Person implements Loadable, Saveable{
 
         this.BMR = rate;
     }
-
 }

@@ -5,7 +5,7 @@ import model.Person;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
-
+//This tester is outdated. (Nov.12,18)
 public class TestMethods
 {
     private Person user;
@@ -82,6 +82,6 @@ public class TestMethods
     {
         user.changeUserInfo("Superman", 24, 182, 65, false);
         day.addFood("burger");
-        assertEquals(-1209.0,user.dailyCalorieDifference(day));
+        assertEquals(-1209.0,day.dailyCalorieDifference());
     }
 }

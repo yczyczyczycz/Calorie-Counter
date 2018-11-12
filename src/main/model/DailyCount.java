@@ -1,5 +1,6 @@
 package model;
 import interfaces.Saveable;
+import observer.UserObserver;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -11,13 +12,14 @@ import java.util.Scanner;
 /**
  **
  */
-public class DailyCount
+public class DailyCount implements UserObserver
 {
     private static int dayNumber = 1;
     private int uniqueNum;
     private ArrayList<CalorieIn> food;
     private ArrayList<CalorieOut> activity;
     private CalorieCounterDatabase ccd;
+    private double userBMR;
 
     //MODIFIES: this
     //EFFECTS: Constructs a DailyCount object that keep tracks of calories in and out
@@ -26,42 +28,9 @@ public class DailyCount
         uniqueNum = dayNumber;
         food = new ArrayList<>();
         activity = new ArrayList<>();
+        userBMR = 0;
         dayNumber++;
     }
-
-    //EFFECTS: Asks the user for the food consumed as a String input and stores it
-    /*
-    public void foodEvent(Scanner reader)
-    {
-        System.out.println("Please type 1 for food and 2 for drink.");
-        int userInput = 0;
-        boolean inputCorrect = false;
-        while(!inputCorrect) {
-            inputCorrect = true;
-            try {
-                userInput = reader.nextInt();
-            } catch (InputMismatchException e) {
-                System.out.println("Incorrect input, please try again.");
-                inputCorrect = false;
-                reader.next();
-            }
-        }
-        if(userInput == 1)
-        {
-            System.out.println("Please type the food you ate.");
-            String input = reader.next();
-            addFood(input);
-        }
-
-        else if(userInput == 2)
-        {
-            System.out.println("Please type the drink you drank.");
-            String input = reader.next();
-            System.out.println("Please type the amount in ml");
-            double amount = reader.nextDouble();
-            addDrink(input, amount);
-        }
-    }*/
 
     //MODIFIES: this
     //EFFECTS: Adds one food item to the daily count
@@ -84,19 +53,6 @@ public class DailyCount
     {
         return food.size();
     }
-
-
-    //MODIFIES: this
-    //EFFECTS: Asks the user for the activity as a String input and stores it
-    /*
-    public void workoutEvent(Scanner reader)
-    {
-        System.out.println("Please type the activity you did.");
-        String input1 = reader.next();
-        System.out.println("Please type the duration of the activity in hours.");
-        int input2 = reader.nextInt();
-        addActivity(input1, input2);
-    }*/
 
     //REQUIRES: double duration, duration cannot be negative
     //MODIFIES: this
@@ -165,5 +121,21 @@ public class DailyCount
     public int hashCode() {
 
         return Objects.hash(uniqueNum);
+    }
+
+    public void setUserBMR(double bmr)
+    {
+        this.userBMR = bmr;
+    }
+
+    public double dailyCalorieDifference()
+    {
+        return countCalorie() - userBMR;
+    }
+
+    @Override
+    public void update(double bmr)
+    {
+        userBMR = bmr;
     }
 }

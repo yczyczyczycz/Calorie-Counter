@@ -29,14 +29,14 @@ public class Main
         int userInput;
         Scanner reader = new Scanner(System.in);
         DailyCount day = new DailyCount();
-        Person user;
+        Person user = new Person();
 
         System.out.println("1 to create a new user. 2 to load user from a text file.");
         userInput = reader.nextInt();
         if(userInput == 1)
         {
-           user = InputHelper.setUpCorrectUser(reader);
-            System.out.println(user.toString());
+           InputHelper.setUpCorrectUser(user, reader);
+           System.out.println(user.toString());
         }
         else
         {
