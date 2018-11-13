@@ -1,14 +1,14 @@
 package ui;
 
-import java.io.FileNotFoundException;
-import java.util.InputMismatchException;
-import java.util.Scanner;
-
-import exceptions.NotValidInputException;
-import exceptions.NotValidOptionException;
 import model.DailyCount;
 import model.Person;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.util.Scanner;
 /** The Main class contains the main method that will run the program.
  **
  */
@@ -17,6 +17,10 @@ public class Main
     //Main that runs the program
     public static void main(String[] args)
     {
+        try{
+            read();
+        } catch(IOException e){}
+
         runCalorieCounter();
     }
 
@@ -49,5 +53,33 @@ public class Main
         user.addDayCount(day);
         InputHelper.exeCommands(user, day, reader);
         reader.close();
+    }
+
+    public static void read() throws MalformedURLException, IOException {
+
+        BufferedReader br = null;
+
+        try {
+            String theURL = "https://www.ugrad.cs.ubc.ca/~cs210/2018w1/welcomemsg.html";
+            URL url = new URL(theURL);
+            br = new BufferedReader(new InputStreamReader(url.openStream()));
+
+            String line;
+
+            StringBuilder sb = new StringBuilder();
+
+            while ((line = br.readLine()) != null) {
+
+                sb.append(line);
+                sb.append(System.lineSeparator());
+            }
+
+            System.out.println(sb);
+        } finally {
+
+            if (br != null) {
+                br.close();
+            }
+        }
     }
 }

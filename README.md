@@ -94,3 +94,9 @@ Fixes:
 -New class InputHelper that received workoutEvent and foodEvent from DailyCount, some helper method from InputEvent
 and some methods from Main
 -CalculateBMR moved to Person and is now setBMR in Person
+
+Project week 10:
+-DailyCount now has the calculate daily calorie difference method
+-DailyCount is now observing when Person changes his/her BMR and will get updated
+-Reading the sample website in the main
+-Observer and subject design implemented
