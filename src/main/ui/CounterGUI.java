@@ -11,7 +11,7 @@ import java.awt.event.ActionListener;
 public class CounterGUI extends JFrame{
 
     private static final int FRAME_WIDTH = 600;
-    private static final int FRAME_HEIGHT = 600;
+    private static final int FRAME_HEIGHT = 500;
     private JButton button1;
     private JButton button2;
     private JButton button3;
@@ -20,6 +20,7 @@ public class CounterGUI extends JFrame{
     private JButton button6;
     private JButton button7;
     private JButton button8;
+    private JButton button9;
 
     private JLabel display;
     private JTextField text;
@@ -30,11 +31,11 @@ public class CounterGUI extends JFrame{
     public CounterGUI()
     {
         super("Calorie Counter");
-        createComponents();
-        setSize(FRAME_WIDTH, FRAME_HEIGHT);
         user = new Person("Bruce", 29, 173, 64, false);
         day = new DailyCount();
         user.addDayCount(day);
+        createComponents();
+        setSize(FRAME_WIDTH, FRAME_HEIGHT);
     }
 
     private void createComponents()
@@ -43,7 +44,7 @@ public class CounterGUI extends JFrame{
         JPanel panel = new JPanel();
         panel.setLayout(new BorderLayout());
         JPanel buttonPanel = new JPanel();
-        buttonPanel.setLayout(new GridLayout(4,2));
+        buttonPanel.setLayout(new GridLayout(3,3));
         panel.add(buttonPanel, BorderLayout.CENTER);
 
         //JLabel
@@ -57,6 +58,9 @@ public class CounterGUI extends JFrame{
 
         //buttons
         button1 = new JButton("add meal");
+        button1.setBackground(new Color(255,182,193));
+        button1.setForeground(Color.BLACK);
+        //button1.setFont(new Font("Arial", Font.PLAIN, 20));
         button1.addActionListener(new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e)
@@ -69,6 +73,8 @@ public class CounterGUI extends JFrame{
         });
 
         button2 = new JButton("add drink (100ml)");
+        button2.setBackground(new Color(255,182,193));
+        button2.setForeground(Color.BLACK);
         button2.addActionListener(new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e)
@@ -81,6 +87,8 @@ public class CounterGUI extends JFrame{
         });
 
         button3 = new JButton("add workout (30 mins)");
+        button3.setBackground(new Color(50,205,50));
+        button3.setForeground(Color.BLACK);
         button3.addActionListener(new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e)
@@ -93,6 +101,8 @@ public class CounterGUI extends JFrame{
         });
 
         button4 = new JButton("daily calorie count");
+        button4.setBackground(new Color(135,206,250));
+        button4.setForeground(Color.BLACK);
         button4.addActionListener(new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e)
@@ -102,6 +112,8 @@ public class CounterGUI extends JFrame{
         });
 
         button5 = new JButton("food and activity list");
+        button5.setBackground(new Color(135,206,250));
+        button5.setForeground(Color.BLACK);
         button5.addActionListener(new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e)
@@ -110,7 +122,9 @@ public class CounterGUI extends JFrame{
             }
         });
 
-        button6 = new JButton("daily caloric difference");
+        button6 = new JButton("daily calorie");
+        button6.setBackground(new Color(135,206,250));
+        button6.setForeground(Color.BLACK);
         button6.addActionListener(new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e)
@@ -120,6 +134,8 @@ public class CounterGUI extends JFrame{
         });
 
         button7 = new JButton("Start a new day");
+        button7.setBackground(new Color(255,255,51));
+        button7.setForeground(Color.BLACK);
         button7.addActionListener(new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e)
@@ -130,12 +146,26 @@ public class CounterGUI extends JFrame{
             }
         });
 
-        button8 = new JButton("show complete progress");
+        button8 = new JButton("show progress");
+        button8.setBackground(new Color(255,255,51));
+        button8.setForeground(Color.BLACK);
         button8.addActionListener(new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e)
             {
                 display.setText(user.printAllDayString());
+            }
+        });
+
+        button9 = new JButton("exit");
+        button9.setBackground(new Color(240,128,128));
+        button9.setForeground(Color.BLACK);
+        button9.addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e)
+            {
+                setVisible(false);
+                dispose();
             }
         });
 
@@ -147,6 +177,7 @@ public class CounterGUI extends JFrame{
         buttonPanel.add(button6);
         buttonPanel.add(button7);
         buttonPanel.add(button8);
+        buttonPanel.add(button9);
 
         add(panel);
     }

@@ -100,3 +100,8 @@ Project week 10:
 -DailyCount is now observing when Person changes his/her BMR and will get updated
 -Reading the sample website in the main
 -Observer and subject design implemented
+
+Project wee 11: GUI
+-Modeled the console loop with JButton and ActionListener with slight simplification
+-CounterGUI implements JFrame, one BoardLayout JPanel then another 3X3 GridLayout JPanel inside
+-9 buttons inside the GridLayout JPanel, with different colors to distinguish between the tasks

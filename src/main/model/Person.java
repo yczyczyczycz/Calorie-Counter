@@ -95,9 +95,9 @@ public class Person extends Subject implements Loadable, Saveable{
     public String printAllDayString()
     {
         String output = "";
-        for(int i = 0; i < dayCount.size(); i++)
-            output += "Day " + dayCount.get(i).getDayNum() + ": " + dayCount.get(i).toString() + " ";
-
+        for(int i = 0; i < dayCount.size(); i++) {
+            output += "Day " + dayCount.get(i).getDayNum() + ": " + dayCount.get(i).dailyCalorieDifference() + " ";
+        }
         return output;
     }
 
