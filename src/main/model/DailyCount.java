@@ -1,13 +1,8 @@
 package model;
-import interfaces.Saveable;
 import observer.UserObserver;
 
-import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.ArrayList;
-import java.util.InputMismatchException;
 import java.util.Objects;
-import java.util.Scanner;
 
 /**
  **
@@ -137,5 +132,10 @@ public class DailyCount implements UserObserver
     public void update(double bmr)
     {
         userBMR = bmr;
+    }
+
+    public CalorieCounterDatabase getCCD()
+    {
+        return this.ccd;
     }
 }

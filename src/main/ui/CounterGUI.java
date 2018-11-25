@@ -1,8 +1,13 @@
 package ui;
 
+import model.DailyCount;
+import model.Person;
+
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.KeyEvent;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.Scanner;
 
 public class CounterGUI extends JFrame{
 
@@ -17,11 +22,19 @@ public class CounterGUI extends JFrame{
     private JLabel display;
     private JTextField text;
 
+    private Person user;
+    private Scanner reader;
+    private DailyCount day;
+
     public CounterGUI()
     {
         super("Calorie Counter");
         createComponents();
         setSize(FRAME_WIDTH, FRAME_HEIGHT);
+        user = new Person("Bruce", 29, 173, 64, false);
+        day = new DailyCount();
+        user.addDayCount(day);
+        reader = new Scanner(System.in);
     }
 
     private void createComponents()
@@ -41,17 +54,30 @@ public class CounterGUI extends JFrame{
         //text
         text = new JTextField(20);
         panel.add(text, BorderLayout.SOUTH);
-        button6 = new JButton("enter");
-        button6.registerKeyboardAction(button6.getActionForKeyStroke(
-                KeyStroke.getKeyStroke(KeyEvent.VK_SPACE, 0, false)),
-                KeyStroke.getKeyStroke(KeyEvent.VK_ENTER, 0, false),
-                JComponent.WHEN_FOCUSED);
-        button6.registerKeyboardAction(button6.getActionForKeyStroke(
-                KeyStroke.getKeyStroke(KeyEvent.VK_SPACE, 0, true)),
-                KeyStroke.getKeyStroke(KeyEvent.VK_ENTER, 0, true),
-                JComponent.WHEN_FOCUSED);
+
+        button6 = new JButton("exit");
+        button6.addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e)
+            {
+                setVisible(false);
+                dispose();
+            }
+        });
+
         //buttons
         button1 = new JButton("input meal");
+        button1.addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e)
+            {
+                String textVal = text.getText();
+                day.addFood(textVal);
+                double amount = day.getCCD().setupCalorie(textVal);
+                display.setText(textVal + " inputted, calorie count: " + amount);
+            }
+        });
+
         button2 = new JButton("input workout");
         button3 = new JButton("day calorie");
         button4 = new JButton("activity list");

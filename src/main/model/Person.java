@@ -1,13 +1,14 @@
 package model;
 
-import java.io.*;
-import java.util.ArrayList;
-
-import exceptions.NotValidInputException;
 import interfaces.Loadable;
 import interfaces.Saveable;
 import observer.Subject;
 
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Person extends Subject implements Loadable, Saveable{
@@ -32,24 +33,21 @@ public class Person extends Subject implements Loadable, Saveable{
     //REQUIRE: age must be greater than 0, height in cm, weight in kg, false is male and true is female
     //MODIFIES: this
     //EFFECT: Construct a person object
-    /*
-    public Person(String name, int age, double height, double weight, boolean gender, double BMR) throws NotValidInputException
-    {
-        if(name.equals("") || height <= 0 || weight <= 0 || age <= 0)
-            throw new NotValidInputException();
 
+    public Person(String name, int age, double height, double weight, boolean gender)
+    {
         dayCount = new ArrayList<>();
         this.name = name;
         this.age = age;
         this.height = height;
         this.weight = weight;
         this.gender = gender;
-        this.BMR = BMR;
+        setBMR(age, height, weight, false);
 
         ccd = new CalorieCounterDatabase();
         ccd.databaseSetup();
     }
-    */
+
 
     public void addDayCount(DailyCount day)
     {
