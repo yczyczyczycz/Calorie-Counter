@@ -3,10 +3,14 @@ package ui;
 import model.DailyCount;
 import model.Person;
 
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 
 public class CounterGUI extends JFrame{
 
@@ -65,6 +69,7 @@ public class CounterGUI extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e)
             {
+                playSound("eating.wav");
                 String textVal = text.getText();
                 day.addFood(textVal);
                 double amount = day.getCCD().setupCalorie(textVal);
@@ -79,6 +84,7 @@ public class CounterGUI extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e)
             {
+                playSound("drink.wav");
                 String textVal = text.getText();
                 day.addDrink(textVal, 100);
                 double amount = day.getCCD().setupCalorie(textVal) * 100;
@@ -93,6 +99,7 @@ public class CounterGUI extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e)
             {
+                playSound("sport.wav");
                 String textVal = text.getText();
                 day.addActivity(textVal, 0.5);
                 double amount = day.getCCD().setupCalorie(textVal) * 0.5;
@@ -107,6 +114,7 @@ public class CounterGUI extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e)
             {
+                playSound("click.wav");
                 display.setText("Total calorie standing is " + day.countCalorie() + " calories.");
             }
         });
@@ -118,6 +126,7 @@ public class CounterGUI extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e)
             {
+                playSound("click.wav");
                 display.setText(day.toString());
             }
         });
@@ -129,6 +138,7 @@ public class CounterGUI extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e)
             {
+                playSound("click.wav");
                 display.setText("Your daily calorie difference is " + day.dailyCalorieDifference());
             }
         });
@@ -140,6 +150,7 @@ public class CounterGUI extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e)
             {
+                playSound("click.wav");
                 display.setText("Welcome to a new day!");
                 day = new DailyCount();
                 user.addDayCount(day);
@@ -153,6 +164,7 @@ public class CounterGUI extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e)
             {
+                playSound("click.wav");
                 display.setText(user.printAllDayString());
             }
         });
@@ -164,6 +176,7 @@ public class CounterGUI extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e)
             {
+                playSound("click.wav");
                 setVisible(false);
                 dispose();
             }
@@ -182,5 +195,19 @@ public class CounterGUI extends JFrame{
         add(panel);
     }
 
-
+    public void playSound(String soundName)
+    {
+        try
+        {
+            AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(new File(soundName).getAbsoluteFile( ));
+            Clip clip = AudioSystem.getClip( );
+            clip.open(audioInputStream);
+            clip.start( );
+        }
+        catch(Exception ex)
+        {
+            System.out.println("Error with playing sound.");
+            ex.printStackTrace( );
+        }
+    }
 }
