@@ -1,0 +1,8 @@
+bruce
+1
+1.0
+1.0
+female
+662.0
+In: burger Out: 
+In: 100.0 ml of cola Out: 
